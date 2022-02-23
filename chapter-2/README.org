@@ -1,4 +1,5 @@
-* ~lat~
+* 2. Do It, Do It Again, and Again, and Again ...
+** ~lat~
  #+begin_src elisp
  (defun lat (l)
    "t if list of atoms"
@@ -11,7 +12,7 @@
  (lat '(1 (2 3))) ;; nil
  #+end_src
 
-* ~member~
+** ~member~
 #+begin_src elisp
   (defun member (a lat)
     (cond

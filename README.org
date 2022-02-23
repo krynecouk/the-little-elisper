@@ -1,12 +1,21 @@
 ((Contents)
+
  (1. [[file:chapter-1/README.org][Toys]])
+
  (2. [[file:chapter-2/README.org][Do It, Do It Again, and Again, and Again ...]])
+
  (3. [[file:chapter-3/README.org][Cons the Magnificent]])
+
  (4. Numbers Games)
+
  (5. *Oh My Gawd*: It's Full of Stars)
+
  (6. Shadows)
+
  (7. Friends and Relations)
+
  (8. Lambda the Ultimate)
+
  (9....and Again, and Again, and Again, ...)
- (10. What Is the Value of All of This?)
- (Index 194))
+
+ (10. What Is the Value of All of This?))
