@@ -1,0 +1,84 @@
+* ~rember~
+#+begin_src elisp
+(defun print-list (l)
+  (cond
+   ((null l) nil)
+   (t (progn (print (car l)) (print-list (cdr l))))))
+
+(defun rember (a lat)
+  (cond
+   ((null lat) '())
+   ((equal a (car lat)) (cdr lat))
+   (t (cons (car lat)
+      (rember a (cdr lat))
+      ))))
+
+(print-list (rember "bar" '("foo" "bar" "baz")))
+#+end_src
+
+* ~firsts~
+#+begin_src elisp
+(defun firsts (l)
+  (cond
+    ((null l) '())
+    ((null (car l)) nil)
+    (t (cons (car(car l)) (firsts (cdr l))))
+    )
+  )
+
+(firsts '(("a", "b") ("1", "2")))
+(firsts '())
+#+end_src
+
+* ~insertR~
+#+begin_src elisp
+(defun insertR (new old lat)
+  (cond
+    ((null lat) '())
+    ((equal (car lat) old)
+     (cons (car lat) (cons new (cdr lat))))
+    (t
+     (cons (car lat) (insertR new old (cdr lat)))
+     )
+    )
+  )
+
+(insertR "4" "3" '("1" "2" "3" "5"))
+#+end_src
+
+* ~insertL~
+#+begin_src elisp
+(defun insertL (new old lat)
+  (cond
+    ((null lat) '())
+    ((equal old (car lat)) (cons new lat))
+    (t (cons (car lat) (insertL new old (cdr lat))))
+    )
+  )
+
+(insertL "4" "5" '("1" "2" "3" "5"))
+#+end_src
+
+* ~subst~
+#+begin_src elisp
+(defun subst (new old lat)
+  (cond
+    ((null lat) '())
+    ((equal old (car lat))
+     (cons new (cdr lat))
+     )
+    (t (cons (car lat) (subst new old (cdr lat))))
+   )
+  )
+
+(subst "foo" "bar" '("foo" "bar" "foo"))
+#+end_src
+
+* ~subst2~
+#+begin_src elisp
+(defun subst2 (new o1 o2 lat)
+  (cond
+; todo
+   )
+  )
+#+end_src
