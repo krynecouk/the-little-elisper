@@ -1,0 +1,21 @@
+* ~lat~
+ #+begin_src elisp
+ (defun lat (l)
+   "t if list of atoms"
+   (cond
+     ((null l) 't)
+     ((atom (car l)) (lat (cdr l)))
+     (t nil)))
+
+ (lat '(1 2 3))   ;; t
+ (lat '(1 (2 3))) ;; nil
+ #+end_src
+
+* ~member~
+#+begin_src elisp
+  (defun member (a lat)
+    (cond
+    ((null lat) nil)
+    (t (or (eq a (car lat)) (member a (cdr lat))))
+  ))
+#+end_src
