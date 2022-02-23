@@ -1,0 +1,67 @@
+* atom (leaf)
+anything that is not a cons
+#+begin_src elisp
+  21
+  "foo"
+  [ 1 2 3 ]
+#+end_src
+
+* cons (tree)
+object which holds two ordered values or pointers to the values
+#+begin_src elisp
+  (1 2 3)
+  (list 1 2 3)
+  '(1 . (2 . (3 . nil)))
+  (cons 1 (cons 2 (cons 3 nil)))
+  ;; *--*--*--nil
+  ;; |  |  |
+  ;; 1  2  3
+#+end_src
+
+* list
+cons where the second argument is a list
+#+begin_src elisp
+  (1 2 3) ; atoms 1,2,3 enclosed by parentheses
+  (cons "a" '("b")) ; ("a" "b")
+#+end_src
+
+* pair
+cons where the second argument is a S-Expression
+#+begin_src elisp
+  '("a" . "b")
+  (cons "a" "b")    ; ("a" . "b")
+  (cons '("a") "b") ; (("a") . "b")
+#+end_src
+
+* S-Expression (sexp)
+atom or cons
+
+* ~car~ (Content of Adress Registry)
+first sexp from the non-empty cons
+#+begin_src elisp
+  (car '(1 2 3)) ; 1
+  (car '(a . b)) ; a
+  (car (cons 3 4)) ; 3
+  (cons "a" '("b"))
+#+end_src
+  
+* ~cdr~ (Content of Decrement Registry)
+second sexp from the non-empty cons (always returns list)
+#+begin_src elisp
+  (cdr '(1 2 3)) ; (2 3)
+  (cdr '(a . b)) ; b
+  (car (cons 3 4)) ; 4
+#+end_src
+
+* predicates
+#+begin_src elisp
+  (atom 1)     ; t
+  (atom nil)   ; t
+  (listp 1)    ; nil
+  (listp '(1)) ; t
+  (listp nil)  ; t
+  (nlistp nil) ; nil
+  (null nil)   ; t
+  (null 1)     ; nil
+  (proper-list-p '(a b c)) ; 3
+#+end_src
