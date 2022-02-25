@@ -1,11 +1,6 @@
 * 3. Cons the Magnificent
 ** ~rember~
 #+begin_src elisp
-(defun print-list (l)
-  (cond
-   ((null l) nil)
-   (t (progn (print (car l)) (print-list (cdr l))))))
-
 (defun rember (a lat)
   (cond
    ((null lat) '())
@@ -14,7 +9,7 @@
       (rember a (cdr lat))
       ))))
 
-(print-list (rember "bar" '("foo" "bar" "baz")))
+(rember "bar" '("foo" "bar" "baz"))
 #+end_src
 
 ** ~firsts~
