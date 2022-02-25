@@ -23,15 +23,15 @@ object which holds two ordered values or pointers to the values
 cons where the second argument is a list
 #+begin_src elisp
   (1 2 3)
-  (cons "a" '("b")) ; ("a" "b")
+  (cons 1 '(2 3)) ; (1 2 3)
 #+end_src
 
 ** pair
 cons where the second argument is a /sexp/
 #+begin_src elisp
-  '("a" . "b")
-  (cons "a" "b")    ; ("a" . "b")
-  (cons '("a") "b") ; (("a") . "b")
+  '(1 . 2)
+  (cons 1 2)        ; (1 2)
+  (cons '(1) 2)     ; ((1) . 2)
 #+end_src
 
 ** sexp
