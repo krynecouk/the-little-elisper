@@ -2,72 +2,83 @@
 ** ~rember~
 #+begin_src elisp
 (defun rember (a lat)
+  "It takes an atom and a lat as its arguments, and makes
+   a new lat with the first occurrence of the atom in the
+   old lat removed."
   (cond
    ((null lat) '())
    ((equal a (car lat)) (cdr lat))
    (t (cons (car lat)
-      (rember a (cdr lat))
-      ))))
+            (rember a (cdr lat))
+            ))))
 
-(rember "bar" '("foo" "bar" "baz"))
+(rember "cup" '("coffee" "cup" "tea" "cup")) ; ("coffee" "tea" "cup")
 #+end_src
 
 ** ~firsts~
 #+begin_src elisp
 (defun firsts (l)
+  "The function firsts takes one argument, a list, which
+   is either a null list or contains only non-empty lists.
+   It builds another list composed of the first sexp of
+   each internal list."
   (cond
-    ((null l) '())
-    ((null (car l)) nil)
-    (t (cons (car(car l)) (firsts (cdr l))))
-    )
-  )
+   ((null l) '())
+   ((null (car l)) nil)
+   (t (cons (car(car l)) (firsts (cdr l))))))
 
-(firsts '(("a", "b") ("1", "2")))
-(firsts '())
+(firsts '(("apple" "peach" "pumpkin")
+        ("plum" "pear" "cherry")
+        ("grape" "raisin" "pea")
+        ("bean" "carrot" "eggplant")))
+
+; ("apple" "plum" "grape" "bean")
+
 #+end_src
 
 ** ~insertR~
 #+begin_src elisp
 (defun insertR (new old lat)
+  "It takes three arguments: the atoms new and old, and a lat.
+   The function insertR builds a lat with new inserted to the
+   right of the first occurrence of old."
   (cond
-    ((null lat) '())
-    ((equal (car lat) old)
-     (cons (car lat) (cons new (cdr lat))))
-    (t
-     (cons (car lat) (insertR new old (cdr lat)))
-     )
-    )
-  )
+   ((null lat) '())
+   ((equal (car lat) old)
+    (cons (car lat) (cons new (cdr lat))))
+   (t
+    (cons (car lat) (insertR new old (cdr lat))))))
 
-(insertR "4" "3" '("1" "2" "3" "5"))
+(insertR "e" "d" '("a" "b" "c" "d" "f" "g" "d" "h")) ; ("a" "b" "c" "d" "e" "f" "g" "d" "h")
 #+end_src
 
 ** ~insertL~
 #+begin_src elisp
 (defun insertL (new old lat)
+  "It takes three arguments: the atoms new and old, and a lat.
+   The function insertL builds a lat with new inserted to the
+   left of the first occurrence of old."
   (cond
-    ((null lat) '())
-    ((equal old (car lat)) (cons new lat))
-    (t (cons (car lat) (insertL new old (cdr lat))))
-    )
-  )
+   ((null lat) '())
+   ((equal old (car lat)) (cons new lat))
+   (t (cons (car lat) (insertL new old (cdr lat))))))
 
-(insertL "4" "5" '("1" "2" "3" "5"))
+(insertL "e" "d" '("a" "b" "c" "d" "f" "g" "d" "h")) ; ; ("a" "b" "c" "e" "d" "f" "g" "d" "h")
+
 #+end_src
 
 ** ~subst~
 #+begin_src elisp
 (defun subst (new old lat)
+  "Replaces the first occurrence of old in the lat with new."
   (cond
-    ((null lat) '())
-    ((equal old (car lat))
-     (cons new (cdr lat))
-     )
-    (t (cons (car lat) (subst new old (cdr lat))))
-   )
-  )
+   ((null lat) '())
+   ((equal old (car lat))
+    (cons new (cdr lat)))
+   (t (cons (car lat) (subst new old (cdr lat))))))
 
-(subst "foo" "bar" '("foo" "bar" "foo"))
+(subst "topping" "fudge" '("ice" "cream" "with" "fudge" "for" "dessert"))
+; ("ice" "cream" "with" "topping" "for" "dessert")
 #+end_src
 
 ** ~subst2~
