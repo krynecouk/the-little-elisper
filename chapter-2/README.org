@@ -8,9 +8,12 @@
    out without encountering a list, the value is t.
    If it finds a list, the value is nil."
    (cond
-     ((null l) 't)
-     ((atom (car l)) (lat? (cdr l)))
-     (t nil)))
+    ((null l)
+     't)
+    ((atom (car l))
+     (lat? (cdr l)))
+    (t
+     '())))
 
  (lat? '("bacon" "and" "eggs")) ; t
  (lat? '(1 (2 3)))              ; nil
@@ -25,9 +28,11 @@
   If it finds a member of atom a in the list of
   atoms lat, the value is t."
   (cond
-   ((null lat) nil)
-   (t (or (equal (car lat) a)
-          (member? a (cdr lat))))))
+   ((null lat)
+    nil)
+   (t
+    (or (equal (car lat) a)
+        (member? a (cdr lat))))))
 
 (member? "meat" '("mashed" "potatoes" "and" "meat" "gravy")) ; t
 (member? "egg" '("mashed" "potatoes" "and" "meat" "gravy"))  ; nil

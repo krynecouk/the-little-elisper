@@ -6,11 +6,13 @@
    a new lat with the first occurrence of the atom in the
    old lat removed."
   (cond
-   ((null lat) '())
-   ((equal a (car lat)) (cdr lat))
-   (t (cons (car lat)
-            (rember a (cdr lat))
-            ))))
+   ((null lat)
+    '())
+   ((equal a (car lat))
+    (cdr lat))
+   (t
+    (cons (car lat)
+          (rember a (cdr lat))))))
 
 (rember "cup" '("coffee" "cup" "tea" "cup")) ; ("coffee" "tea" "cup")
 #+end_src
@@ -23,9 +25,10 @@
    It builds another list composed of the first sexp of
    each internal list."
   (cond
-   ((null l) '())
-   ((null (car l)) nil)
-   (t (cons (car(car l)) (firsts (cdr l))))))
+   ((or (null l) (null (car l)))
+    '())
+   (t
+    (cons (car(car l)) (firsts (cdr l))))))
 
 (firsts '(("apple" "peach" "pumpkin")
         ("plum" "pear" "cherry")
@@ -43,7 +46,8 @@
    The function insertR builds a lat with new inserted to the
    right of the first occurrence of old."
   (cond
-   ((null lat) '())
+   ((null lat)
+    '())
    ((equal (car lat) old)
     (cons (car lat) (cons new (cdr lat))))
    (t
@@ -59,9 +63,12 @@
    The function insertL builds a lat with new inserted to the
    left of the first occurrence of old."
   (cond
-   ((null lat) '())
-   ((equal old (car lat)) (cons new lat))
-   (t (cons (car lat) (insertL new old (cdr lat))))))
+   ((null lat)
+    '())
+   ((equal old (car lat))
+    (cons new lat))
+   (t
+    (cons (car lat) (insertL new old (cdr lat))))))
 
 (insertL "e" "d" '("a" "b" "c" "d" "f" "g" "d" "h")) ; ; ("a" "b" "c" "e" "d" "f" "g" "d" "h")
 
@@ -72,10 +79,12 @@
 (defun subst (new old lat)
   "Replaces the first occurrence of old in the lat with new."
   (cond
-   ((null lat) '())
+   ((null lat)
+    '())
    ((equal old (car lat))
     (cons new (cdr lat)))
-   (t (cons (car lat) (subst new old (cdr lat))))))
+   (t
+    (cons (car lat) (subst new old (cdr lat))))))
 
 (subst "topping" "fudge" '("ice" "cream" "with" "fudge" "for" "dessert"))
 ; ("ice" "cream" "with" "topping" "for" "dessert")
