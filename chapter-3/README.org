@@ -93,8 +93,15 @@
 ** ~subst2~
 #+begin_src elisp
 (defun subst2 (new o1 o2 lat)
+  "Replaces either the first occurrence of o1 or the first occurrence of o2 by new."
   (cond
-; todo
-   )
-  )
+   ((null lat)
+    '())
+   ((or (equal (car lat) o1) (equal (car lat) o2))
+    (cons new (cdr lat)))
+   (t
+    (cons (car lat) (subst2 new o1 o2 (cdr lat))))))
+
+(subst2 "vanilla" "chocolate" "banana" '("banana" "ice" "cream" "with" "chocolate" "topping"))
+; ("vanilla" "ice" "cream" "with" "chocolate" "topping")
 #+end_src
