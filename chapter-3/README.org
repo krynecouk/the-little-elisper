@@ -120,4 +120,23 @@
     (cons (car lat) (multirember a (cdr lat))))))
 
 (multirember "cup" '("coffee" "cup" "tea" "cup" "and" "hick" "cup"))
+; ("coffee" "tea" "and" "hick")
+#+end_src
+
+** ~multiinsertR~
+#+begin_src elisp
+(defun multiinsertR (new old lat)
+  "It takes three arguments: the atoms new and old, and a lat.
+   The function multiinsertR builds a lat with new inserted to the
+   right of the every occurrence of old."
+  (cond
+   ((null lat)
+    '())
+   ((equal (car lat) old)
+    (cons old (cons new (multiinsertR new old (cdr lat)))))
+   (t
+    (cons (car lat) (multiinsertR new old (cdr lat))))))
+
+(multiinsertR "fried" "fish" '("chips" "and" "fish" "or" "fish" "and" "fried"))
+; ("chips" "and" "fish" "fried" "or" "fish" "fried" "and" "fried")
 #+end_src
