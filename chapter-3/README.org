@@ -2,9 +2,10 @@
 ** ~rember~
 #+begin_src elisp
 (defun rember (a lat)
-  "It takes an atom and a lat as its arguments, and makes
-   a new lat with the first occurrence of the atom in the
-   old lat removed."
+  "The function rember looks at each atom of a lat to see if it is the same as the atom a.
+   If it is not, rember saves the atom and proceeds. When it finds the first occurrence of
+   a, it stops and gives the value (cdr lat), or the rest of the lat, so that the value
+   returned is the original lat, with only that occurrence of a removed."
   (cond
    ((null lat)
     '())
@@ -104,4 +105,19 @@
 
 (subst2 "vanilla" "chocolate" "banana" '("banana" "ice" "cream" "with" "chocolate" "topping"))
 ; ("vanilla" "ice" "cream" "with" "chocolate" "topping")
+#+end_src
+
+** ~multirember~
+#+begin_src elisp
+(defun multirember (a lat)
+  "Returns lat with all occurrences of a removed."
+  (cond
+   ((null lat)
+    '())
+   ((equal a (car lat))
+    (multirember a (cdr lat)))
+   (t
+    (cons (car lat) (multirember a (cdr lat))))))
+
+(multirember "cup" '("coffee" "cup" "tea" "cup" "and" "hick" "cup"))
 #+end_src
