@@ -140,3 +140,21 @@
 (multiinsertR "fried" "fish" '("chips" "and" "fish" "or" "fish" "and" "fried"))
 ; ("chips" "and" "fish" "fried" "or" "fish" "fried" "and" "fried")
 #+end_src
+
+** ~multiinsertL~
+#+begin_src elisp
+(defun multiinsertL (new old lat)
+  "It takes three arguments: the atoms new and old, and a lat.
+   The function multiinsertL builds a lat with new inserted to the
+   left of the every occurrence of old."
+  (cond
+   ((null lat)
+    '())
+   ((equal (car lat) old)
+    (cons new (cons old (multiinsertL new old (cdr lat)))))
+   (t
+    (cons (car lat) (multiinsertL new old (cdr lat))))))
+
+(multiinsertL "fried" "fish" '("chips" "and" "fish" "or" "fish" "and" "fried"))
+; ("chips" "and" "fried" "fish" "or" "fried" "fish" "and" "fried")
+#+end_src
