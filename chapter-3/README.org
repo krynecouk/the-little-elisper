@@ -158,3 +158,19 @@
 (multiinsertL "fried" "fish" '("chips" "and" "fish" "or" "fish" "and" "fried"))
 ; ("chips" "and" "fried" "fish" "or" "fried" "fish" "and" "fried")
 #+end_src
+
+** ~multisubst~
+#+begin_src elisp
+(defun multisubst (new old lat)
+  "Replaces every occurrence of old in the lat with new."
+  (cond
+   ((null lat)
+    '())
+   ((equal old (car lat))
+    (cons new (multisubst new old (cdr lat))))
+   (t
+    (cons (car lat) (multisubst new old (cdr lat))))))
+
+(multisubst "fried" "fish" '("chips" "and" "fish" "or" "fish" "and" "fried"))
+; ("chips" "and" "fried" "or" "fried" "and" "fried")
+#+end_src
