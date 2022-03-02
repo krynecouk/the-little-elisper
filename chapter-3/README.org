@@ -15,7 +15,8 @@
     (cons (car lat)
           (rember a (cdr lat))))))
 
-(rember "cup" '("coffee" "cup" "tea" "cup")) ; ("coffee" "tea" "cup")
+(rember "cup" '("coffee" "cup" "tea" "cup"))
+;; -> ("coffee" "tea" "cup")
 #+end_src
 
 ** ~firsts~

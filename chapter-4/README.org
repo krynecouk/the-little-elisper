@@ -1,0 +1,28 @@
+* 4. Numbers Games
+** ~add1~
+#+begin_src elisp
+(defun add1 (n)
+  (+ n 1))
+
+(add1 67) ; 68
+#+end_src
+
+** ~sub1~
+#+begin_src elisp
+(defun sub1 (n)
+  (- n 1))
+
+(sub1 5) ; 4
+#+end_src
+
+** ~+~
+#+begin_src elisp
+(defun + (n m)
+  (cond
+   ((zerop m) n)
+   (t
+    (add1 (+ n (sub1 m))))))
+
+(+ 4 6) ; 10
+#+end_src
+
