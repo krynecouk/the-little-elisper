@@ -6,7 +6,7 @@
 
  (3. [[file:chapter-3/README.org][Cons the Magnificent]])
 
- (4. Numbers Games)
+ (4. [[file:chapter-4/README.org][Numbers Games]])
 
  (5. *Oh My Gawd*: It's Full of Stars)
 

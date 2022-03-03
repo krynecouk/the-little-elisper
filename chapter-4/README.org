@@ -26,3 +26,14 @@
 (+ 4 6) ; 10
 #+end_src
 
+** ~-~
+#+begin_src elisp
+(defun - (n m)
+  (cond
+   ((zerop m) n)
+   (t
+    (sub1 (- n (sub1 m))))))
+
+(- 17 9) ; 8
+#+end_src
+
