@@ -29,11 +29,25 @@
 ** ~-~
 #+begin_src elisp
 (defun - (n m)
+  "It takes two numbers as arguments, and reduces the second
+   until it hits zero. It subtracts one from the result as
+   many times as it did to cause the second one to reach zero."
   (cond
    ((zerop m) n)
    (t
     (sub1 (- n (sub1 m))))))
 
-(- 17 9) ; 8
+    (- 17 9) ; 8
+    #+end_src
+
+** ~addtup~
+#+begin_src elisp
+(defun addtup (tup)
+  (cond
+   ((null tup) 0)
+   (t
+    (+ (car tup) (addtup (cdr tup))))))
+
+(addtup '(15 6 7 12 3)) ; 43
 #+end_src
 
