@@ -51,3 +51,14 @@
 (addtup '(15 6 7 12 3)) ; 43
 #+end_src
 
+** ~x~
+#+begin_src elisp
+(defun x (m n)
+  (cond
+   ((zerop n) 0)
+   (t
+    (+ m (x m (- n 1))))))
+
+(x 12 3) ; 36
+#+end_src
+
