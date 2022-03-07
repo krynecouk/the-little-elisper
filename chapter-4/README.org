@@ -79,3 +79,15 @@
 (tup+ '(3 7 8 1) '(4 6)) ; (7 13 8 1)
 #+end_src
 
+** ~gt~
+#+begin_src elisp
+(defun gt (m n)
+  (cond
+    ((zerop m) nil)
+    ((zerop n) t)
+    (t (gt (- m 1) (- n 1)))))
+
+(gt 12 133) ; nil
+(gt 120 11) ; t
+#+end_src
+
