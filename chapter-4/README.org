@@ -96,12 +96,25 @@
 #+begin_src elisp
 (defun lt (m n)
   (cond
-    ((zerop n) nil)
-    ((zerop m) t)
-    (t (lt (- m 1) (- n 1)))))
+   ((zerop n) nil)
+   ((zerop m) t)
+   (t (lt (- m 1) (- n 1)))))
 
 (lt 4 6) ; t
 (lt 8 3) ; nil
 (lt 6 6) ; t
+#+end_src
+
+** ~=~
+#+begin_src elisp
+(defun eq= (m n)
+  (cond
+   ((or (gt m n) (lt m n))
+       nil)
+   (t t)))
+
+(eq= 2 3) ; nil
+(eq= 3 2) ; nil
+(eq= 5 5) ; t
 #+end_src
 
