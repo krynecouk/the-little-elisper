@@ -118,3 +118,13 @@
 (eq= 5 5) ; t
 #+end_src
 
+** ~^~
+#+begin_src elisp
+(defun ^ (m n)
+  (cond
+   ((zerop n) 1)
+   (t
+    (* m (^ m (- n 1))))))
+
+(^ 2 3)
+#+end_src
