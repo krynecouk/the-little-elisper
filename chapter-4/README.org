@@ -133,11 +133,21 @@
 ** ~div~
 #+begin_src elisp
 (defun div (m n)
-   (cond
-     ((< m n) 0)
-     (t
-       (+ 1 (div (- m n) n)))))
+  (cond
+   ((< m n) 0)
+    (t
+     (+ 1 (div (- m n) n))))))
 
 (div 15 3) ; 5
 (div 15 4) ; 3
+#+end_src
+
+** ~length~
+#+begin_src elisp
+(defun len (lat)
+  (cond
+   ((null lat) 0)
+   (t (+ 1 (len (cdr lat))))))
+
+(len '("hotdogs" "with" "mustard" "sauerkraut" "and" "pickles")) ; 6
 #+end_src
