@@ -126,5 +126,18 @@
    (t
     (* m (^ m (- n 1))))))
 
-(^ 2 3)
+(^ 2 3)  ; 8
+(^ 10 3) ; 1000
+#+end_src
+
+** ~div~
+#+begin_src elisp
+(defun div (m n)
+   (cond
+     ((< m n) 0)
+     (t
+       (+ 1 (div (- m n) n)))))
+
+(div 15 3) ; 5
+(div 15 4) ; 3
 #+end_src
