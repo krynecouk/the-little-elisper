@@ -147,7 +147,19 @@
 (defun len (lat)
   (cond
    ((null lat) 0)
-   (t (+ 1 (len (cdr lat))))))
+   (t
+    (+ 1 (len (cdr lat))))))
 
 (len '("hotdogs" "with" "mustard" "sauerkraut" "and" "pickles")) ; 6
+#+end_src
+
+** ~pick~
+#+begin_src elisp
+(defun pick (n lat)
+  (cond
+   ((zerop (- n 1)) (car lat))
+   (t
+    (pick (- n 1) (cdr lat)))))
+
+(pick 4 '("lasagna" "spaghetti" "ravioli" "macaroni" "meatball")) ; macaroni
 #+end_src
