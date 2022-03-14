@@ -163,3 +163,14 @@
 
 (pick 4 '("lasagna" "spaghetti" "ravioli" "macaroni" "meatball")) ; macaroni
 #+end_src
+
+** ~rempick~
+#+begin_src elisp
+(defun rempick (n lat)
+  (cond
+   ((zerop (- n 1)) (cdr lat))
+   (t
+    (cons (car lat) (rempick (- n 1) (cdr lat))))))
+
+(rempick 3 '("hotdogs" "with" "hot" "mustard")) ; ("hotdogs" "with" "mustard")
+#+end_src
