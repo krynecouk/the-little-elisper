@@ -174,3 +174,16 @@
 
 (rempick 3 '("hotdogs" "with" "hot" "mustard")) ; ("hotdogs" "with" "mustard")
 #+end_src
+
+** ~numberp~
+#+begin_src elisp
+(defun no-nums (lat)
+  "Gives as a final value a lat obtained by removing all the numbers from the lat."
+  (cond
+   ((null lat) '())
+   ((numberp (car lat))
+    (no-nums (cdr lat)))
+   (t (cons (car lat) (no-nums (cdr lat))))))
+
+(no-nums '(5 "pears" 6 "prunes" 9 "dates")) ; ("pears" "prunes" "dates")
+#+end_src
