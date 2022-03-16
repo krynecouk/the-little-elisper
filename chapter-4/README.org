@@ -175,7 +175,7 @@
 (rempick 3 '("hotdogs" "with" "hot" "mustard")) ; ("hotdogs" "with" "mustard")
 #+end_src
 
-** ~numberp~
+** ~no-nums~
 #+begin_src elisp
 (defun no-nums (lat)
   "Gives as a final value a lat obtained by removing all the numbers from the lat."
@@ -188,7 +188,7 @@
 (no-nums '(5 "pears" 6 "prunes" 9 "dates")) ; ("pears" "prunes" "dates")
 #+end_src
 
-** ~allnums~
+** ~all-nums~
 #+begin_src elisp
 (defun all-nums (lat)
   (cond
@@ -198,4 +198,20 @@
    (t (all-nums (cdr lat)))))
 
 (all-nums '(5 "pears" 6 "prunes" 9 "dates")) ; (5 6 9)
+#+end_src
+
+** ~eganp~
+#+begin_src elisp
+(defun eganp (a1 a2)
+  "Returns t if its two arguments (a1 and a2) are the same atom."
+  (cond
+   ((and (numberp a1) (numberp a2))
+    (= a1 a2))
+   ((or (numberp a1) (numberp a2)) nil)
+   (t (equal a1 a2))))
+
+(eganp 1 "pears")
+(eganp 1 2)
+(eganp 1 1)
+(eganp "pears" "pears")
 #+end_src
