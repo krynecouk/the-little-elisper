@@ -215,3 +215,17 @@
 (eganp 1 1)
 (eganp "pears" "pears")
 #+end_src
+
+** ~occur~
+#+begin_src elisp
+(defun occur (a lat)
+  "Counts the number of times an atom a appears in a lat."
+  (cond
+   ((null lat) 0)
+   ((equal a (car lat))
+    (+ 1 (occur a (cdr lat)))) 
+   (t
+    (occur a (cdr lat)))))
+
+(occur "pear" '(1 "prunes" "dates" 5 "pear" 7 "pear")) ; 2
+#+end_src
