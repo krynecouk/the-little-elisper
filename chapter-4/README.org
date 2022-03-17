@@ -229,3 +229,15 @@
 
 (occur "pear" '(1 "prunes" "dates" 5 "pear" 7 "pear")) ; 2
 #+end_src
+
+** ~onep~
+#+begin_src elisp
+(defun onep (n)
+  (cond
+   ((zerop n) nil)
+   (t (zerop (- n 1)))))
+
+(onep 5) ; nil
+(onep 1) ; t
+#+end_src
+
