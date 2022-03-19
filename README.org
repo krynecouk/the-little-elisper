@@ -8,7 +8,7 @@
 
  (4. [[file:chapter-4/README.org][Numbers Games]])
 
- (5. *Oh My Gawd*: It's Full of Stars)
+ (5. [[file:chapter-5/README.org][*Oh My Gawd*: It's Full of Stars]])
 
  (6. Shadows)
 

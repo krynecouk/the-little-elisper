@@ -1,0 +1,5 @@
+* 5. *Oh My Gawd*: It's Full of Stars
+** ~rember~
+#+begin_src elisp
+;; tbd
+#+end_src
