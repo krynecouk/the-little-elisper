@@ -241,3 +241,16 @@
 (onep 1) ; t
 #+end_src
 
+** ~rempick2~
+#+begin_src elisp
+(defun rempick2 (n lat)
+  (cond
+   ((= n 1) (cdr lat))
+   (t
+    (cons
+     (car lat)
+     (rempick (- n 1) (cdr lat))))))
+
+(rempick2 3 '("lemon" "meringue" "salty" "pie")) ; ("lemon" "meringue" "pie")
+#+end_src
+
