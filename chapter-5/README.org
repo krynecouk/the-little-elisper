@@ -1,5 +1,22 @@
 * 5. *Oh My Gawd*: It's Full of Stars
 ** ~rember~
 #+begin_src elisp
-;; tbd
+(defun rember* (a lat)
+  (cond
+   ((null lat) '())
+   ((atom (car lat))
+    (cond
+     ((equal a (car lat))
+      (rember* a (cdr lat)))
+     (t
+      (cons
+       (car lat)
+       (rember* a (cdr lat))))))
+   (t
+    (cons
+     (rember* a (car lat))
+     (rember* a (cdr lat))))))
+
+(rember* "cup" '(("coffee") "cup" (("tea") "cup") ("and" ("hick")) "cup"))
+; (("coffee") (("tea")) ("and" ("hick")))
 #+end_src
