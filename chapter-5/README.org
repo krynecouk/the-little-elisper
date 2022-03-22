@@ -1,5 +1,5 @@
 * 5. *Oh My Gawd*: It's Full of Stars
-** ~rember~
+** ~rember*~
 #+begin_src elisp
 (defun rember* (a lat)
   (cond
@@ -19,4 +19,40 @@
 
 (rember* "cup" '(("coffee") "cup" (("tea") "cup") ("and" ("hick")) "cup"))
 ; (("coffee") (("tea")) ("and" ("hick")))
+#+end_src
+
+** ~insertR*~
+#+begin_src elisp
+(defun insertR* (new old l)
+  (cond
+   ((null l) '())
+   ((atom (car l))
+    (cond
+     ((equal old (car l))
+      (cons
+       old
+       (cons new (cdr l))))
+     (t
+      (cons
+       (car l)
+       (insertR* new old (cdr l))))))
+   (t
+    (cons
+     (insertR* new old (car l))
+     (insertR* new old (cdr l))))))
+
+(insertR* "roast" "chuck"
+          '(("how" "much" ("wood"))
+            "could"
+            (("a" ("wood") "chuck"))
+            ((("chuck")))
+            ("if" ("a") (("wood" "chuck")))
+            "could" "chuck" "wood"))
+
+; ((how much (wood))
+; could
+; ((a (wood) chuck roast))
+; (((chuck roast)))
+; (if (a) ((wood chuck roast)))
+; could chuck roast wood)
 #+end_src
