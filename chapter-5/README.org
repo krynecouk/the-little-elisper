@@ -56,3 +56,20 @@
 ; (if (a) ((wood chuck roast)))
 ; could chuck roast wood)
 #+end_src
+
+** ~occur*~
+#+begin_src elisp
+(defun occur* (a l)
+    
+)
+
+(occur*
+ '(("banana")
+   ("split" (((("banana" "ice")))
+             ("cream" ("banana"))
+             "sherbet"))
+   ("banana")
+   ("bread")
+   ("banana" "brandy")))
+; 5
+#+end_src
