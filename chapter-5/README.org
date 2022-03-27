@@ -85,11 +85,24 @@
 
 ** ~subst*~
 #+begin_src elisp
-(defun subst* new old l
-   (cond
-      
-   )
-)
+(defun subst* (new old l)
+  (cond
+   ((null l) '())
+   ((atom (car l))
+    (cond
+     ((equal old (car l))
+      (cons
+       new
+       (subst* new old (cdr l)))
+      )
+     (t
+      (cons
+       (car l)
+       (subst* new old (cdr l))))))
+   (t
+    (cons
+     (subst* new old (car l))
+     (subst* new old (cdr l))))))
 
 (subst*
  "orange"
@@ -110,3 +123,10 @@
 ;  ("bread")
 ;  ("orange" "brandy")).
 #+end_src
+
+#+RESULTS:
+| orange |                                             |
+| split  | ((((orange ice))) (cream (orange)) sherbet) |
+| orange |                                             |
+| bread  |                                             |
+| orange | brandy                                      |
