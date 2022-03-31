@@ -163,3 +163,17 @@
 ;  (if (a) ((wood pecker chuck)))
 ;  could pecker chuck wood)
 #+end_src
+
+** ~member*~
+#+begin_src elisp
+(defun member* (a l)
+  (cond
+   ((null l) nil)
+   ((atom (car l))
+    (or (equal a (car l)) (member* a (cdr l))))
+   (t
+    (or (member* a (car l)) (member* a (cdr l))))))
+
+(member* "chips" '(("potato") ("chips" (("with") "fish") ("chips")))) ; t
+(member* "coffee" '(("potato") ("chips" (("with") "fish") ("chips")))) ; f
+#+end_src
