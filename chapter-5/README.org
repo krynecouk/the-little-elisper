@@ -175,5 +175,19 @@
     (or (member* a (car l)) (member* a (cdr l))))))
 
 (member* "chips" '(("potato") ("chips" (("with") "fish") ("chips")))) ; t
-(member* "coffee" '(("potato") ("chips" (("with") "fish") ("chips")))) ; f
+(member* "coffee" '(("potato") ("chips" (("with") "fish") ("chips")))) ; nil
+#+end_src
+
+** ~leftmost~
+#+begin_src elisp
+(defun leftmost (l)
+  "Finds the leftmost atom in a non-empty list of S-expressions that does not contain the empty list."
+  (cond
+    ((atom (car l))
+     (car l))
+    (t
+     (leftmost (car l)))))
+
+ (leftmost '((("hot") ("tuna" ("and"))) "cheese")) ; "hot"
+ (leftmost '(((() "four")) 17 ("seventeen"))) ; nil
 #+end_src
