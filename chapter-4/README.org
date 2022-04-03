@@ -200,9 +200,9 @@
 (all-nums '(5 "pears" 6 "prunes" 9 "dates")) ; (5 6 9)
 #+end_src
 
-** ~eganp~
+** ~eqanp~
 #+begin_src elisp
-(defun eganp (a1 a2)
+(defun eqanp (a1 a2)
   "Returns t if its two arguments (a1 and a2) are the same atom."
   (cond
    ((and (numberp a1) (numberp a2))
@@ -210,10 +210,10 @@
    ((or (numberp a1) (numberp a2)) nil)
    (t (equal a1 a2))))
 
-(eganp 1 "pears")
-(eganp 1 2)
-(eganp 1 1)
-(eganp "pears" "pears")
+(eqanp 1 "pears")
+(eqanp 1 2)
+(eqanp 1 1)
+(eqanp "pears" "pears")
 #+end_src
 
 ** ~occur~
