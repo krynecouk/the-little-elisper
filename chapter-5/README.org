@@ -191,3 +191,23 @@
  (leftmost '((("hot") ("tuna" ("and"))) "cheese")) ; "hot"
  (leftmost '(((() "four")) 17 ("seventeen"))) ; nil
 #+end_src
+
+** ~eqlistp~
+#+begin_src elisp
+(defun eqlistp (l1 l2)
+  (cond
+   ((and (null l1) (null l2)) t)
+   ((or (null l1) (null l2)) nil)
+   ((and (atom (car l1)) (atom (car l2)))
+    (and (equal (car l1) (car l2))
+         (eqlistp (cdr l1) (cdr l2))))
+   (t
+    (and (eqlistp (car l1) (car l2))
+         (eqlistp (cdr l1) (cdr l2))))))
+
+(eqlistp '("beef" (("sausage")) ("and" ("soda")))
+         '("beef" (("salami")) ("and" ("soda")))) ; nil
+
+(eqlistp '("beef" (("sausage")) ("and" ("soda")))
+         '("beef" (("sausage")) ("and" ("soda")))) ; t
+#+end_src
