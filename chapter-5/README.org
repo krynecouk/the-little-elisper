@@ -211,3 +211,10 @@
 (eqlistp '("beef" (("sausage")) ("and" ("soda")))
          '("beef" (("sausage")) ("and" ("soda")))) ; t
 #+end_src
+
+** ~equalp~
+#+begin_src elisp
+(defun equalp (s1 s2)
+   ; tbd
+)
+#+end_src
