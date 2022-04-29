@@ -10,7 +10,7 @@
 
  (5. [[file:chapter-5/README.org][*Oh My Gawd*: It's Full of Stars]])
 
- (6. Shadows)
+ (6. [[file:chapter-6/README.org][Shadows]])
 
  (7. Friends and Relations)
 

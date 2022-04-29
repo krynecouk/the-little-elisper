@@ -1,0 +1,12 @@
+* Shadows
+** ~numberedp~
+#+begin_src elisp
+(defun numberedp (aexp)
+  (cond
+   ((atom aexp) (numberp aexp))
+   (t
+    (and (numberedp (car aexp)) (numberedp (car (cdr (cdr aexp))))))))
+
+(numberedp '(3 + (4 ^ 5))) ; t
+(numberedp '(2 x sausage)) ; nil
+#+end_src
