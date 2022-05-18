@@ -10,3 +10,60 @@
 (numberedp '(3 + (4 ^ 5))) ; t
 (numberedp '(2 x sausage)) ; nil
 #+end_src
+
+** ~value~
+#+begin_src elisp
+(defun value (nexp)
+  (cond
+   ((atom nexp) nexp)
+   ((equal (car (cdr nexp)) "+")
+    (+
+     (value (car nexp))
+     (value (car (cdr (cdr nexp))))))
+   ((equal (car (cdr nexp)) "-")
+    (-
+     (value (car nexp))
+     (value (car (cdr (cdr nexp))))))
+   (t
+    ((equal (car (cdr nexp)) "^")
+     (exp
+      (value (car nexp))
+      (value (car (cdr (cdr nexp)))))))))
+
+(value 13) ; 13
+(value '(1 + (3 ^ 4))) ; 82
+(value "cookie") ; nil
+#+end_src
+
+** ~value2~
+#+begin_src elisp
+(defun operator (nexp)
+  (car nexp))
+
+(defun 1st-sexp (nexp)
+  (car (cdr nexp)))
+
+(defun 2nd-sexp (nexp)
+  (car (cdr (cdr nexp))))
+
+(defun isOperator (nexp sign)
+  (equal (operator nexp) sign))
+
+(defun value2 (nexp)
+  "Function value for a new kind of arithmetic expression that is either:
+    - a number
+    - a list of the atom + followed by two arithmetic expressions,
+    - a list of the atom * followed by two arithmetic expressions, or
+    - a list of the atom ^ followed by two arithmetic expressions."
+  (cond
+   ((atom nexp) nexp)
+   ((equal (operator nexp) "+")
+    (+ (value2 (1st-sexp nexp)) (value2 (2nd-sexp nexp))))
+   ((equal (operator nexp) "*")
+    (* (value2 (1st-sexp nexp)) (value2 (2nd-sexp nexp))))
+   (t
+    (exp (value2 (1st-sexp nexp)) (value2 (2nd-sexp nexp))))))
+
+(value2 '("+" 3 4)) ; 7
+(value2 '("+" '("x" 3 6) '("^" 8 2)))
+#+end_src
