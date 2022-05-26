@@ -67,3 +67,27 @@
 (value2 '("+" 3 4)) ; 7
 (value2 '("+" '("x" 3 6) '("^" 8 2)))
 #+end_src
+
+** ~sero?~
+#+begin_src elisp
+(defun sero? (n)
+   (null n))
+
+(sero? '()) ; t
+(sero? '(())) ; nil
+#+end_src
+
+** ~edd1~
+#+begin_src elisp
+(defun edd1 (n)
+   (cons '() n))
+
+(edd1 '()) ; (())
+(edd1 '(() ()) ; (())
+#+end_src
+
+** ~zub1~
+#+begin_src elisp
+(defun zub1 (n)
+   (cdr n))
+#+end_src
