@@ -1,2 +1,19 @@
 * Friends and Relations
-**  
+** ~set?~
+#+begin_src elisp
+(defun member? (a lat)
+  (cond
+   ((null lat) nil)
+   ((equal a (car lat)) t)
+   (t (member? a (cdr lat)))))
+
+(defun set? (lat)
+   (cond
+      ((null lat) t)
+      ((member? (car lat) (cdr lat)) nil)
+      (t (set? (cdr lat)))))
+
+(set? '("apple" "peaches" "apple" "plum")) ; nil
+(set? '("apple" "peaches" "pears" "plum")) ; t
+#+end_src
+
