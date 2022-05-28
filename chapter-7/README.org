@@ -16,4 +16,16 @@
 (set? '("apple" "peaches" "apple" "plum")) ; nil
 (set? '("apple" "peaches" "pears" "plum")) ; t
 #+end_src
+** ~makeset~
+#+begin_src elisp
+(defun makeset (lat)
+  (cond
+   ((null lat) '())
+   ((member? (car lat) (cdr lat))
+    (makeset (cdr lat)))
+   (t
+    (cons (car lat) (makeset (cdr lat))))))
 
+
+(makeset '("apple" "peach" "pear" "peach" "plum" "apple" "lemon" "peach")) ; ("pear" "plum" "apple" "lemon" "peach")
+#+end_src
