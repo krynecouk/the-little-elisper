@@ -29,3 +29,23 @@
 
 (makeset '("apple" "peach" "pear" "peach" "plum" "apple" "lemon" "peach")) ; ("pear" "plum" "apple" "lemon" "peach")
 #+end_src
+** ~makeset2~
+#+begin_src elisp
+(defun multirember (a lat)
+  (cond
+   ((null lat) '())
+   ((equal a (car lat))
+    (multirember a (cdr lat)))
+   (t
+    (cons (car lat) (multirember a (cdr lat))))))
+
+(multirember "cup" '("coffee" "cup" "tea" "cup" "and" "hick" "cup")) ; ("coffee" "tea" "and" "hick")
+
+(defun makeset2 (lat)
+  (cond
+   ((null lat) '())
+   (t
+    (cons (car lat) (makeset2 (multirember (car lat) lat))))))
+
+(makeset2 '("apple" "peach" "pear" "peach" "plum" "apple" "lemon" "peach")) ; ("pear" "plum" "apple" "lemon" "peach")
+#+end_src
