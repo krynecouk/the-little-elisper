@@ -49,3 +49,30 @@
 
 (makeset2 '("apple" "peach" "pear" "peach" "plum" "apple" "lemon" "peach")) ; ("pear" "plum" "apple" "lemon" "peach")
 #+end_src
+** ~subset?~
+#+begin_src elisp
+(defun member? (a lat)
+  (cond
+   ((or (null a) (null lat))
+    nil)
+   (t
+    (or (equal a (car lat)) (member? a (cdr lat))))))
+
+(member? "apple" '("orange" "peach" "apple" "banana"))
+
+(defun subset? (set1 set2)
+  (cond
+   ((null set1) t)
+   (t
+    (and
+     (member? (car set1) set2)
+     (subset? (cdr set1) set2)))))
+
+  (subset?
+   '(5 "chicken" "wings")
+   '(5 "hamburgers" 2 "pieces" "fried" "chicken" "and" "light" "duckling" "wings")) ; t
+
+  (subset?
+   '(4 "pounds" "of" "horseradish")
+   '("four" "pounds" "chicken" "and" 5 "ounces" "horseradish")) ; f
+#+end_src
