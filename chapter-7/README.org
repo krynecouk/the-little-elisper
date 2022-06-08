@@ -87,3 +87,15 @@
 
 (eqset? '(6 "large" "chickens" "with" "wings") '(6 "large" "chickens" "with" "wings")) ; t
 #+end_src
+** ~intersect~
+#+begin_src elisp
+(defun intersect (set1 set2)
+  (cond
+   ((null set1) nil)
+   (t
+    (or
+     (member? (car set1) set2)
+     (intersect (cdr set1) set2)))))
+
+(intersect '("stewed" "tomatoes" "and" "macaroni") '("macaroni" "and" "cheese")) ; t
+#+end_src
