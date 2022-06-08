@@ -76,3 +76,14 @@
    '(4 "pounds" "of" "horseradish")
    '("four" "pounds" "chicken" "and" 5 "ounces" "horseradish")) ; f
 #+end_src
+** ~eqset?~
+#+begin_src elisp
+(defun eqset? (set1 set2)
+  (cond
+   ((or (null set1) (null set2)) t)
+   ((equal (car set1) (car set2))
+    (eqset? (cdr set1) (cdr set2)))
+   (t nil)))
+
+(eqset? '(6 "large" "chickens" "with" "wings") '(6 "large" "chickens" "with" "wings")) ; t
+#+end_src
