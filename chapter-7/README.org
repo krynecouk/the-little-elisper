@@ -111,3 +111,15 @@
 
 (intersect '("stewed" "tomatoes" "and" "macaroni") '("macaroni" "and" "cheese")) ; (and macaroni)
 #+end_src
+** ~union~
+#+begin_src elisp
+(defun union (set1 set2)
+  (cond
+   ((null set1) set2)
+   ((member? (car set1) set2)
+    (union (cdr set1) set2))
+   (t
+    (cons (car set1) (union (cdr set1) set2)))))
+
+(union '("stewed" "tomatoes" "and" "macaroni" "casserole") '("macaroni" "and" "cheese")) ; (stewed tomatoes casserole macaroni and cheese)
+#+end_src
