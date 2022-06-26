@@ -12,7 +12,7 @@
 
  (6. [[file:chapter-6/README.org][Shadows]])
 
- (7. Friends and Relations)
+ (7. [[file:chapter-7/README.org][Friends and Relations]])
 
  (8. Lambda the Ultimate)
 
