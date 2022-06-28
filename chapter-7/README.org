@@ -137,3 +137,22 @@
 		("8" "pears" "and" "6" "plums")
 		("and" "6" "prunes" "with" "some" "apples"))) ; (6 and)
 #+end_src
+** ~a-pair?~
+#+begin_src elisp
+(defun length? (l)
+  (cond
+   ((null l) 0)
+   (t
+    (+ 1 (length? (cdr l))))))
+
+(length? '(1 2 3)) ; 3
+
+(defun a-pair? (l)
+  (cond
+   ((= (length? l) 2) t)
+   (t nil)))
+
+(a-pair? '(3 7)) ; t
+(a-pair? '((2) ("pair"))) ; t
+(a-pair? '(3 7 5)) ; nil
+#+end_src
