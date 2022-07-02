@@ -14,7 +14,7 @@
 
  (7. [[file:chapter-7/README.org][Friends and Relations]])
 
- (8. Lambda the Ultimate)
+ (8. [[file:chapter-8/README.org][Lambda the Ultimate]])
 
  (9....and Again, and Again, and Again, ...)
 
