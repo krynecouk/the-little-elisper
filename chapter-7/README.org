@@ -193,3 +193,18 @@
 (revrel '((8 "a") ("pumpkin" "pie") ("got" "sick"))) ; ((a 8) (pie pumpkin) (sick got))
 
 #+end_src
+** ~fullfun?~
+#+begin_src elisp
+(defun seconds (l)
+  (cond
+    ((null l) '())
+    (t
+     (cons (second (car l)) (seconds (cdr l))))))
+
+(seconds '((8 3) (4 8) (7 6) (6 2) (3 4))) ; (3 8 6 2 4)
+
+(defun fullfun? (fun)
+  (set? (seconds fun)))
+
+(fullfun? '(("grape" "raisin") ("plum" "prune") ("stewed" "prune"))) ; nil
+#+end_src
