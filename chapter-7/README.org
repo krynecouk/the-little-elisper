@@ -8,10 +8,10 @@
    (t (member? a (cdr lat)))))
 
 (defun set? (lat)
-   (cond
-      ((null lat) t)
-      ((member? (car lat) (cdr lat)) nil)
-      (t (set? (cdr lat)))))
+  (cond
+   ((null lat) t)
+   ((member? (car lat) (cdr lat)) nil)
+   (t (set? (cdr lat)))))
 
 (set? '("apple" "peaches" "apple" "plum")) ; nil
 (set? '("apple" "peaches" "pears" "plum")) ; t
@@ -68,13 +68,13 @@
      (member? (car set1) set2)
      (subset? (cdr set1) set2)))))
 
-  (subset?
-   '(5 "chicken" "wings")
-   '(5 "hamburgers" 2 "pieces" "fried" "chicken" "and" "light" "duckling" "wings")) ; t
+(subset?
+ '(5 "chicken" "wings")
+ '(5 "hamburgers" 2 "pieces" "fried" "chicken" "and" "light" "duckling" "wings")) ; t
 
-  (subset?
-   '(4 "pounds" "of" "horseradish")
-   '("four" "pounds" "chicken" "and" 5 "ounces" "horseradish")) ; f
+(subset?
+ '(4 "pounds" "of" "horseradish")
+ '("four" "pounds" "chicken" "and" 5 "ounces" "horseradish")) ; f
 #+end_src
 ** ~eqset?~
 #+begin_src elisp
@@ -153,6 +153,43 @@
    (t nil)))
 
 (a-pair? '(3 7)) ; t
+(a-pair? '(3 '(7 2 1))) ; t
 (a-pair? '((2) ("pair"))) ; t
 (a-pair? '(3 7 5)) ; nil
+#+end_src
+** ~first~
+#+begin_src elisp
+(defun first (l)
+  (car l))
+#+end_src
+** ~second~
+#+begin_src elisp
+(defun second (l)
+  (car (cdr l)))
+#+end_src
+** ~third~
+#+begin_src elisp
+(defun third (l)
+  (car (cdr (cdr l))))
+#+end_src
+** ~build-pair~
+#+begin_src elisp
+(defun build-pair (sexp1 sexp2)
+  (cons sexp1 (cons sexp2 '())))
+#+end_src
+** ~revrel~
+#+begin_src elisp
+(defun revpair (pair)
+  (cons (second pair) (first pair)))
+
+(revpair '(8 "a")) ; (a 8)
+
+(defun revrel (rel)
+  (cond
+   ((null rel) '())
+   (t
+    (cons (revpair (first rel)) (revrel (cdr rel))))))
+
+(revrel '((8 "a") ("pumpkin" "pie") ("got" "sick"))) ; ((a 8) (pie pumpkin) (sick got))
+
 #+end_src
