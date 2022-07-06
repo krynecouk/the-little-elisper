@@ -1,1 +1,13 @@
 * Lambda the Ultimate
+** ~rember-f~
+#+begin_src elisp
+(defun rember-f (test? a l)
+  (cond
+   ((null l) '())
+   ((funcall test? a (car l))
+    (rember-f test? a (cdr l)))
+   (t
+    (cons (car l) (rember-f test? a (cdr l))))))
+
+(rember-f '= 5 '(6 2 5 3)) ; (6 2 3)
+#+end_src
