@@ -11,3 +11,13 @@
 
 (rember-f '= 5 '(6 2 5 3)) ; (6 2 3)
 #+end_src
+** ~eq?-c~
+#+begin_src elisp
+(defun eq?-c (a)
+  (lambda (x) (equal x a)))
+
+(setq eq?-salad (eq?-c 'salad))
+
+(funcall eq?-salad 'salad) ; t
+(funcall eq?-salad 'tuna) ; nil
+#+end_src
